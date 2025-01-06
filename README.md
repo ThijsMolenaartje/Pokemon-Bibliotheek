@@ -12,7 +12,7 @@ Super simpel! Scroll door de lijst met Pokémon aan de linkerkant en klik op een
 Het design is geïnspireerd door de klassieke Pokémon games, maar dan in een modern jasje. Perfect voor zowel nieuwe fans als veteranen die hun kennis willen opfrissen!
 
 # demo
-## pokemonbibliotheek.netlify.app/
+## <pokemonbibliotheek.netlify.app/>
 
 ---
 Gemaakt met ❤️ door Thijs Molenaar
