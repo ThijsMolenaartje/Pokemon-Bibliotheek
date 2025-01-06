@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* GitHub Dark Theme Colors */
+    --bg-dark: #0d1117;
+    --bg-darker: #010409;
+    --bg-light: #161b22;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --border-color: #30363d;
+    --primary-blue: #58a6ff;
+    --accent-green: #238636;
+    --accent-red: #da3633;
+    --hover-bg: #1f2937;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem;
+    text-align: center;
+    overflow: hidden;
+    height: 160px;
+    z-index: 10;
+}
+
+.banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Banner.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.7);
+    z-index: 0;
+}
+
+.header-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.github-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.github-link::before,
+.github-link::after {
+    content: '';
+    position: absolute;
+    border-radius: 6px;
+}
+
+.github-link::before {
+    z-index: -2;
+    inset: -2px;
+    background: linear-gradient(90deg, #ff0000, #ff00ff, #0000ff, #00ffff, #00ff00, #ffff00, #ff0000);
+    background-size: 200% 100%;
+    animation: rainbow 8s linear infinite;
+}
+
+.github-link::after {
+    z-index: -1;
+    inset: 0;
+    background: var(--bg-darker);
+    transition: all 0.2s ease;
+}
+
+.github-link:hover::after {
+    background: var(--hover-bg);
+}
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    height: calc(100vh - 160px);
+    margin-top: 160px;
+}
+
+.pokemon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.pokemon-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pokemon-container::-webkit-scrollbar-track {
+    background: var(--bg-light);
+    border-radius: 4px;
+}
+
+.pokemon-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.pokemon-card {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-2px);
+    background-color: var(--hover-bg);
+}
+
+.pokemon-card.selected {
+    background-color: var(--hover-bg);
+    border-color: var(--primary-blue);
+}
+
+.pokemon-card .sprite-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pokemon-card img.pokemon-sprite {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.pokemon-card h3 {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0.25rem;
+    border-radius: 4px;
+    background-color: var(--bg-dark);
+    text-align: center;
+}
+
+.pokemon-card:hover h3 {
+    background-color: var(--hover-bg);
+}
+
+.pokemon-card .type-icons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.pokemon-card .type-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Pokemon Detail Styling */
+.pokemon-detail {
+    position: relative;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    display: none;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.pokemon-detail.active {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.pokemon-info {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--bg-dark);
+    border-radius: 6px;
+}
+
+.pokemon-info img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0.5rem auto;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.pokemon-info h2 {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.pokemon-info .types {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.pokemon-info .type {
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    color: var(--text-primary);
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.stats-container {
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    background-color: var(--bg-dark);
+}
+
+.stats-container h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.stat-bar {
+    background-color: var(--bg-light);
+    height: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background-color: var(--accent-green);
+    transition: width 0.3s ease-in-out;
+}
+
+.stat-fill.low {
+    background-color: var(--accent-red);
+}
+
+.stat-fill.medium {
+    background-color: var(--primary-blue);
+}
+
+.stat-fill.high {
+    background-color: var(--accent-green);
+}
+
+/* Pokemon Detail Styling */
+.sprite-container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin: 1rem 0;
+}
+
+.sprite-wrapper {
+    text-align: center;
+}
+
+.sprite-wrapper img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    margin-bottom: 0.5rem;
+}
+
+.sprite-wrapper p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.github-icon {
+    flex-shrink: 0;
+}
+
+.detail-wrapper {
+    display: none;
+}
+
+.shimmer-border {
+    display: none;
+}
